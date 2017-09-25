@@ -1,0 +1,41 @@
+Configuration:
+  status: warn
+  name: CLJ base project default logging config
+  properties:
+    property:
+      name: filename
+      value: target/clj_base.log
+  thresholdFilter:
+    level: debug
+  appenders:
+    Console:
+      name: STDOUT
+      PatternLayout:
+        Pattern: "%d %p %C{1.} [%t] %m%n"
+    RollingFile:
+      name: File
+      fileName: ${filename}
+      filePattern: "${filename}_%i"
+      PatternLayout:
+        Pattern: "%d %p %C{1.} [%t] %m%n"
+      policies:
+        SizeBasedTriggeringPolicy:
+          size: "1 MB"
+      DefaultRolloverstrategy:
+        max: 3
+
+  Loggers:
+    # If you like you can put in java namespaces into here
+    # for more control over logging
+    # logger:
+    #  - name: clj-base.core
+    #    level: debug
+    #    additivity: false
+
+    Root:
+      # This root logger catches everything. For simple cases
+      # this is all that you will need
+      level: debug
+      AppenderRef:
+        - ref: File
+        - ref: STDOUT
