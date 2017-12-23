@@ -24,4 +24,9 @@ find . -type f -name "*.clj" -exec sed -i "" "s/clj-base/$PROJECT_NAME/g" {} +
 find . -type f -name "*.md" -exec sed -i "" "s/clj-base/$PROJECT_NAME/g" {} +
 find . -type f -name "*.yaml" -exec sed -i "" "s/clj-base/$PROJECT_NAME/g" {} +
 
-echo Done!
+# Adding the renamed files to the git repo...
+git add src
+git add test
+
+echo Renaming done!
+echo Review and commit outstanding changes.
